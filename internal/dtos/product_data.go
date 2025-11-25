@@ -1,15 +1,24 @@
 package dtos
 
 type ProductResponse struct {
-	Sku      string
-	Name     string
-	Category string
-	price    ProductPriceResponse
+	Sku      string               `json:"sku"`
+	Name     string               `json:"name"`
+	Category string               `json:"category"`
+	Price    ProductPriceResponse `json:"price"`
 }
 
 type ProductPriceResponse struct {
-	Original           int
-	Final              int
-	DiscountPercentage string
-	Currency           string
+	Original           int    `json:"original"`
+	Final              int    `json:"final"`
+	DiscountPercentage string `json:"discount_percentage"`
+	Currency           string `json:"currency"`
+}
+
+func NewProductPriceResponse(original, final int, discount string) ProductPriceResponse {
+	return ProductPriceResponse{
+		Original:           original,
+		Final:              final,
+		DiscountPercentage: discount,
+		Currency:           "EUR",
+	}
 }

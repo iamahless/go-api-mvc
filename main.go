@@ -6,6 +6,7 @@ import (
 	"github.com/iamahless/product-filter-api/config"
 	"github.com/iamahless/product-filter-api/internal/controllers"
 	"github.com/iamahless/product-filter-api/internal/models"
+	"github.com/iamahless/product-filter-api/internal/repositories"
 	"github.com/iamahless/product-filter-api/internal/routes"
 	"github.com/iamahless/product-filter-api/internal/services"
 	"github.com/iamahless/product-filter-api/seeders"
@@ -27,7 +28,8 @@ func main() {
 		return
 	}
 
-	productService := services.NewProductService(db)
+	productRepo := repositories.NewProductRepository(db)
+	productService := services.NewProductService(productRepo)
 	productController := controllers.NewProductController(productService)
 
 	router := routes.SetupRouter(productController)
