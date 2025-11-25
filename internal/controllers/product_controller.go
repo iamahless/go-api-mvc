@@ -26,6 +26,7 @@ func (controller *ProductController) ListProducts(context *gin.Context) {
 		context.JSON(http.StatusInternalServerError, gin.H{"message": err.Error()})
 		return
 	}
+
 	context.JSON(http.StatusOK, productResponse)
 }
 

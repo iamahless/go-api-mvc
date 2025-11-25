@@ -8,17 +8,23 @@ type ProductResponse struct {
 }
 
 type ProductPriceResponse struct {
-	Original           int    `json:"original"`
-	Final              int    `json:"final"`
-	DiscountPercentage string `json:"discount_percentage"`
-	Currency           string `json:"currency"`
+	Original           int     `json:"original"`
+	Final              int     `json:"final"`
+	DiscountPercentage *string `json:"discount_percentage"`
+	Currency           string  `json:"currency"`
 }
 
 func NewProductPriceResponse(original, final int, discount string) ProductPriceResponse {
+	var discountPtr *string
+
+	if discount != "" {
+		discountPtr = &discount
+	}
+
 	return ProductPriceResponse{
 		Original:           original,
 		Final:              final,
-		DiscountPercentage: discount,
+		DiscountPercentage: discountPtr,
 		Currency:           "EUR",
 	}
 }
