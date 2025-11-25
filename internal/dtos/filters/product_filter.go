@@ -1,10 +1,10 @@
 package filters
 
 type ProductFilter struct {
-	Category      string `json:"category" form:"category"`
-	PriceLessThan int    `json:"price_less_than" form:"price_less_than"`
-	Limit         int    `json:"limit" form:"limit"`
-	Page          int    `json:"page" form:"page"`
+	Category      string `form:"category"`
+	PriceLessThan int    `form:"priceLessThan"`
+	Limit         int    `form:"limit"`
+	Page          int    `form:"page"`
 }
 
 func NewProductFilter() ProductFilter {

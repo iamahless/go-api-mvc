@@ -16,11 +16,11 @@ func NewProductController(service *services.ProductService) *ProductController {
 	return &ProductController{Service: service}
 }
 
-func (c *ProductController) ListProducts(context *gin.Context) {
+func (controller *ProductController) ListProducts(context *gin.Context) {
 	filters := filters.NewProductFilter()
 	context.ShouldBindQuery(&filters)
 
-	productResponse, err := c.Service.ListProducts(filters)
+	productResponse, err := controller.Service.ListProducts(filters)
 
 	if err != nil {
 		context.JSON(http.StatusInternalServerError, gin.H{"message": err.Error()})

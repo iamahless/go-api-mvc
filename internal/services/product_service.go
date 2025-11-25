@@ -3,7 +3,6 @@ package services
 import (
 	"github.com/iamahless/product-filter-api/internal/dtos"
 	"github.com/iamahless/product-filter-api/internal/dtos/filters"
-	"github.com/iamahless/product-filter-api/internal/models"
 	"github.com/iamahless/product-filter-api/internal/repositories"
 )
 
@@ -15,11 +14,10 @@ func NewProductService(repo repositories.ProductRepository) *ProductService {
 	return &ProductService{Repo: repo}
 }
 
-func (s *ProductService) ListProducts(filters filters.ProductFilter) ([]dtos.ProductResponse, error) {
-	products := []models.Product{}
+func (service *ProductService) ListProducts(filters filters.ProductFilter) ([]dtos.ProductResponse, error) {
 	productResponses := []dtos.ProductResponse{}
 
-	products, err := s.Repo.FindByFilters(filters)
+	products, err := service.Repo.FindByFilters(filters)
 
 	if err != nil {
 		return nil, err

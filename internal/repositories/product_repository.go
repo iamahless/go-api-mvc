@@ -18,10 +18,10 @@ func NewProductRepository(db *gorm.DB) ProductRepository {
 	return &productRepository{DB: db}
 }
 
-func (productRepository *productRepository) FindByFilters(filters filters.ProductFilter) ([]models.Product, error) {
+func (repo *productRepository) FindByFilters(filters filters.ProductFilter) ([]models.Product, error) {
 	var products []models.Product
 
-	query := productRepository.DB.Model(&models.Product{})
+	query := repo.DB.Model(&models.Product{})
 
 	if filters.Category != "" {
 		query = query.Where("category = ?", filters.Category)
