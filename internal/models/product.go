@@ -1,7 +1,6 @@
 package models
 
 import (
-	"math/rand"
 	"time"
 
 	"github.com/oklog/ulid/v2"
@@ -21,7 +20,7 @@ type Product struct {
 
 func (p *Product) BeforeCreate(tx *gorm.DB) (err error) {
 	if p.ID == "" {
-		p.ID = ulid.MustNew(ulid.Timestamp(time.Now()), rand.New(rand.NewSource(time.Now().UnixNano()))).String()
+		p.ID = ulid.Make().String()
 	}
 	return
 }
